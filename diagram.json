@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-pi-pico-w", "id": "pico", "top": -3.25, "left": -6.05, "attrs": {} },
+    {
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": 41.54,
+      "left": 153.83,
+      "attrs": { "i2cAddress": "0x3c" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -43.2,
+      "left": 191.45,
+      "rotate": 90,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": -43.2,
+      "left": 172.25,
+      "rotate": 90,
+      "attrs": { "value": "330" }
+    },
+    { "type": "wokwi-vcc", "id": "vcc1", "top": -114.44, "left": 211.2, "attrs": {} },
+    { "type": "wokwi-vcc", "id": "vcc2", "top": -114.44, "left": 172.8, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd1", "top": 67.2, "left": 124.2, "attrs": {} },
+    {
+      "type": "wokwi-analog-joystick",
+      "id": "joystick1",
+      "top": 28.2,
+      "left": -167.4,
+      "attrs": {}
+    },
+    { "type": "wokwi-gnd", "id": "gnd2", "top": 192, "left": -106.2, "attrs": {} },
+    { "type": "wokwi-vcc", "id": "vcc3", "top": 19.96, "left": -192, "attrs": {} },
+    {
+      "type": "wokwi-rgb-led",
+      "id": "rgb1",
+      "top": 148,
+      "left": 193.1,
+      "attrs": { "common": "cathode" }
+    },
+    { "type": "wokwi-gnd", "id": "gnd3", "top": 211.2, "left": 201, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 244.25,
+      "left": 56.2,
+      "rotate": 180,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r4",
+      "top": 282.65,
+      "left": 56.2,
+      "rotate": 180,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r5",
+      "top": 263.45,
+      "left": 56.2,
+      "rotate": 180,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": -13,
+      "left": -316.8,
+      "attrs": { "color": "green", "xray": "1" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r6",
+      "top": -52.8,
+      "left": -259.75,
+      "rotate": 90,
+      "attrs": { "value": "330" }
+    },
+    { "type": "wokwi-vcc", "id": "vcc4", "top": -124.04, "left": -240, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd4", "top": 57.6, "left": -240.6, "attrs": {} },
+    {
+      "type": "wokwi-text",
+      "id": "text1",
+      "top": 48,
+      "left": -316.8,
+      "attrs": { "text": "BOTÃO A" }
+    }
+  ],
+  "connections": [
+    [ "pico:GP0", "$serialMonitor:RX", "", [] ],
+    [ "pico:GP1", "$serialMonitor:TX", "", [] ],
+    [ "oled1:SDA", "pico:GP19", "green", [ "v-28.8", "h-105.53", "v134.36" ] ],
+    [ "pico:GP20", "oled1:SCL", "green", [ "h38.71", "v-137.65", "h105.3" ] ],
+    [ "r1:2", "oled1:SDA", "green", [ "h0", "v27.6" ] ],
+    [ "r2:2", "oled1:SCL", "green", [ "h0" ] ],
+    [ "r2:1", "r1:1", "green", [ "h0" ] ],
+    [ "vcc1:VCC", "r1:1", "red", [ "v0" ] ],
+    [ "oled1:VCC", "vcc2:VCC", "red", [ "v-48", "h-19.05" ] ],
+    [ "oled1:GND", "gnd1:GND", "black", [ "v-19.2", "h-57.6" ] ],
+    [ "joystick1:GND", "gnd2:GND", "black", [ "v0" ] ],
+    [ "joystick1:VCC", "vcc3:VCC", "red", [ "v19.2", "h-48" ] ],
+    [ "joystick1:SEL", "pico:GP22", "green", [ "v96", "h48", "v-278.4", "h153.6", "v153.6" ] ],
+    [
+      "joystick1:HORZ",
+      "pico:GP26",
+      "green",
+      [ "v105.6", "h67.2", "v-278.4", "h134.4", "v124.8" ]
+    ],
+    [
+      "joystick1:VERT",
+      "pico:GP27",
+      "green",
+      [ "v115.2", "h86.4", "v-278.4", "h115.2", "v105.6" ]
+    ],
+    [ "gnd3:GND", "rgb1:COM", "black", [ "v0" ] ],
+    [ "rgb1:R", "r3:1", "green", [ "v0" ] ],
+    [ "r3:2", "pico:GP12", "green", [ "h-75.6", "v-96.04" ] ],
+    [ "rgb1:B", "r4:1", "green", [ "v0" ] ],
+    [ "r4:2", "pico:GP11", "green", [ "v0", "h-85.2", "v-134.4" ] ],
+    [ "rgb1:G", "r5:1", "green", [ "v0" ] ],
+    [ "r5:2", "pico:GP13", "green", [ "v0", "h-66", "v-105.6" ] ],
+    [ "btn1:1.r", "r6:2", "green", [ "v0", "h9.8" ] ],
+    [ "r6:1", "vcc4:VCC", "green", [ "h0" ] ],
+    [ "gnd4:GND", "btn1:2.r", "black", [ "v0" ] ],
+    [ "pico:GP5", "btn1:1.r", "green", [ "h-19.2", "v-115.2", "h-48", "v57.6" ] ]
+  ],
+  "dependencies": {}
+}
